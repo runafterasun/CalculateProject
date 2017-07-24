@@ -37,6 +37,18 @@ public class FoodLvThree {
     @Column(name = "comments" ,length = 150)
     private String comments;
 
+    @ManyToOne
+    @JoinColumn(name="type")
+    private ProductType type;
+
+    public ProductType getType() {
+        return type;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
+    }
+
     public long getId() {
         return id;
     }

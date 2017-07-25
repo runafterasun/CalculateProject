@@ -15,7 +15,7 @@ public class CommentSecondLv {
     @JoinColumn(name="commentId")
     private FirstLevelCat commentId;
 
-    @Column(name = "CommentDate", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "CommentDate")
     private Date CommentDate;
 
     @Column(name = "Comments" ,length = 500)

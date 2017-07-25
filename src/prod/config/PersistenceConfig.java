@@ -20,16 +20,16 @@ public class PersistenceConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-        dataSource.setUsername("stereo");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost/world?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+        dataSource.setUsername("project");
         dataSource.setPassword("test");
         return dataSource;
     }
 
     private Map<String,?> jpaProperties(){
         Map<String, String> jpaProperiesMap = new HashMap<String, String>();
-        jpaProperiesMap.put("hibernate.dialect","org.hibernate.dialect.Oracle10gDialect");
+        jpaProperiesMap.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
         jpaProperiesMap.put("hibernate.hbm2ddl.auto", "update");
         return jpaProperiesMap;
     }

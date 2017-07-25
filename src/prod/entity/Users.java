@@ -22,7 +22,7 @@ public class Users {
     @Column(name = "nickname" ,length = 80)
     private String nickname;
 
-    @Column(name = "lastLogin", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "lastLogin")
     private Date lastLogin;
 
     @Column(name = "about" ,length = 80)
@@ -31,7 +31,16 @@ public class Users {
     @Column(name = "password" ,length = 25)
     private String password;
 
+    @OneToMany(mappedBy = "userId")
+    private Set<Role> roleId= new HashSet<Role>();
 
+    public Set<Role> getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Set<Role> roleId) {
+        this.roleId = roleId;
+    }
 
     public long getUserId() {
         return userId;

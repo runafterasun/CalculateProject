@@ -25,10 +25,10 @@ public class FoodLvThree {
     @Column(name = "productPrice")
     private Double productPrice;
 
-    @Column(name = "insertData", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "insertData")
     private Date insertData;
 
-    @Column(name = "lastUpdateData", columnDefinition = "DATE DEFAULT CURRENT_DATE")
+    @Column(name = "lastUpdateData")
     private Date lastUpdateData;
 
     @Column(name = "quantityOfGoods")

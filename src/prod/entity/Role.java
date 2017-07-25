@@ -7,25 +7,22 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Role")
-public class Role {
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Role extends Model{
+
+    private static final long serialVersionUID = -7093656700523495999L;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private Users userId;
 
     @Column(name = "role" ,length = 50)
     private String role;
 
-    public long getId() {
-        return id;
+    public Role(){
+        super();
     }
-
-    public void setId(long id) {
-        this.id = id;
+    public Role(Long id){
+        super(id);
     }
 
     public Users getUserId() {

@@ -9,11 +9,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "FirstLevelCat")
-public class FirstLevelCat {
-    @Id
-    @Column(name = "MainCatId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long MainCatId;
+public class FirstLevelCat extends Model{
+
+    private static final long serialVersionUID = 4113653911261923464L;
 
     @OneToMany(mappedBy = "commentId")
     private Set<CommentSecondLv> commentId = new HashSet<CommentSecondLv>();
@@ -27,20 +25,19 @@ public class FirstLevelCat {
     @Column(name = "name" ,length = 40)
     private String name;
 
+    public FirstLevelCat(){
+        super();
+    }
+    public FirstLevelCat(Long id){
+        super(id);
+    }
+
     public Set<Prioritys> getPrioritys() {
         return prioritys;
     }
 
     public void setPrioritys(Set<Prioritys> prioritys) {
         this.prioritys = prioritys;
-    }
-
-    public long getMainCatId() {
-        return MainCatId;
-    }
-
-    public void setMainCatId(long mainCatId) {
-        MainCatId = mainCatId;
     }
 
     public Set<CommentSecondLv> getCommentId() {

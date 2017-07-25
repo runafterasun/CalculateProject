@@ -1,5 +1,7 @@
 package prod.entity;
 
+import org.springframework.security.access.method.P;
+
 import javax.persistence.*;
 
 /**
@@ -7,33 +9,30 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "Prioritys")
-public class Prioritys {
-    @Id
-    @Column(name = "priorityId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long priorityId;
+public class Prioritys extends Model{
+
+    private static final long serialVersionUID = 2260239684284469513L;
 
     @ManyToOne
-    @JoinColumn(name="levelFirstId")
+    @JoinColumn(name="levelFirstId", referencedColumnName = "id")
     private FirstLevelCat levelFirstId;
 
     @ManyToOne
-    @JoinColumn(name="levelSecondId")
+    @JoinColumn(name="levelSecondId", referencedColumnName = "id")
     private SecondLevelCat levelSecondId;
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="userId", referencedColumnName = "id")
     private Users userId;
 
     @Column(name = "priority")
     private int priority;
 
-    public long getPriorityId() {
-        return priorityId;
+    public Prioritys(){
+        super();
     }
-
-    public void setPriorityId(long priorityId) {
-        this.priorityId = priorityId;
+    public Prioritys(Long id){
+        super(id);
     }
 
     public Users getUserId() {

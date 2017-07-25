@@ -1,6 +1,7 @@
 package prod.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -8,22 +9,20 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "FoodLvThree")
-public class FoodLvThree {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class FoodLvThree extends Model{
+
+    private static final long serialVersionUID = -446254898284261126L;
 
     @ManyToOne
-    @JoinColumn(name="categoryID")
+    @JoinColumn(name="categoryID", referencedColumnName = "id")
     private SecondLevelCat categoryID;
 
     @ManyToOne
-    @JoinColumn(name="userId")
+    @JoinColumn(name="userId", referencedColumnName = "id")
     private Users userId;
 
     @Column(name = "productPrice")
-    private Double productPrice;
+    private BigDecimal productPrice;
 
     @Column(name = "insertData")
     private Date insertData;
@@ -38,8 +37,15 @@ public class FoodLvThree {
     private String comments;
 
     @ManyToOne
-    @JoinColumn(name="type")
+    @JoinColumn(name="type", referencedColumnName = "id")
     private ProductType type;
+
+    public FoodLvThree(){
+        super();
+    }
+    public FoodLvThree(Long id){
+        super(id);
+    }
 
     public ProductType getType() {
         return type;
@@ -47,14 +53,6 @@ public class FoodLvThree {
 
     public void setType(ProductType type) {
         this.type = type;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public SecondLevelCat getCategoryID() {
@@ -73,11 +71,11 @@ public class FoodLvThree {
         this.userId = userId;
     }
 
-    public Double getProductPrice() {
+    public BigDecimal getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Double productPrice) {
+    public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
 

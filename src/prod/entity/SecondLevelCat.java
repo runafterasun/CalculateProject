@@ -12,14 +12,12 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "SecondLevelCat")
-public class SecondLevelCat {
-    @Id
-    @Column(name = "categoryID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long categoryID;
+public class SecondLevelCat extends Model{
+
+    private static final long serialVersionUID = 7941499115311374576L;
 
     @ManyToOne
-    @JoinColumn(name = "MainCatId")
+    @JoinColumn(name = "MainCatId", referencedColumnName = "id")
     private FirstLevelCat MainCatId;
 
     @OneToMany(mappedBy = "commentId")
@@ -37,6 +35,12 @@ public class SecondLevelCat {
     @Column(name = "lastUpdateData")
     private Date lastUpdateData;
 
+    public SecondLevelCat(){
+        super();
+    }
+    public SecondLevelCat(Long id){
+        super(id);
+    }
 
 
     public Set<Prioritys> getPrioritys() {
@@ -47,9 +51,6 @@ public class SecondLevelCat {
         this.prioritys = prioritys;
     }
 
-    public long getCategoryID() {
-        return categoryID;
-    }
 
     public FirstLevelCat getMainCatId() {
         return MainCatId;
@@ -63,9 +64,6 @@ public class SecondLevelCat {
         return lastUpdateData;
     }
 
-    public void setCategoryID(long categoryID) {
-        this.categoryID = categoryID;
-    }
 
     public void setMainCatId(FirstLevelCat mainCatId) {
         MainCatId = mainCatId;

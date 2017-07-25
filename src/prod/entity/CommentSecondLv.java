@@ -5,14 +5,12 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CommentSecondLv")
-public class CommentSecondLv {
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class CommentSecondLv extends Model{
+
+    private static final long serialVersionUID = 1632930370350850501L;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="commentId")
+    @JoinColumn(name="commentId", referencedColumnName = "id")
     private FirstLevelCat commentId;
 
     @Column(name = "CommentDate")
@@ -24,12 +22,11 @@ public class CommentSecondLv {
     @Column(name = "FavoriteFlag")
     private int FavoriteFlag;
 
-    public long getId() {
-        return id;
+    public CommentSecondLv(){
+        super();
     }
-
-    public void setId(long id) {
-        this.id = id;
+    public CommentSecondLv(Long id){
+        super(id);
     }
 
     public FirstLevelCat getCommentId() {

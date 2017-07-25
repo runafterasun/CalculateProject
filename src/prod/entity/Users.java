@@ -10,11 +10,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "Users")
-public class Users {
-    @Id
-    @Column(name = "userId")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userId;
+public class Users extends Model{
+
+    private static final long serialVersionUID = -8904827508238518114L;
 
     @OneToMany(mappedBy = "userId")
     private Set<Prioritys> prioritys= new HashSet<Prioritys>();
@@ -34,6 +32,13 @@ public class Users {
     @OneToMany(mappedBy = "userId")
     private Set<Role> roleId= new HashSet<Role>();
 
+    public Users(){
+        super();
+    }
+    public Users(Long id){
+        super(id);
+    }
+
     public Set<Role> getRoleId() {
         return roleId;
     }
@@ -42,13 +47,6 @@ public class Users {
         this.roleId = roleId;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public Set<Prioritys> getPrioritys() {
         return prioritys;

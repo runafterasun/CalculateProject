@@ -9,12 +9,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "ProductType")
-public class ProductType {
+public class ProductType extends Model{
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private static final long serialVersionUID = 3728464081932104226L;
 
     @OneToMany(mappedBy = "type")
     private Set<FoodLvThree> type = new HashSet<FoodLvThree>();
@@ -22,12 +19,11 @@ public class ProductType {
     @Column(name = "productName" ,length = 150)
     private String productName;
 
-    public long getId() {
-        return id;
+    public ProductType(){
+        super();
     }
-
-    public void setId(long id) {
-        this.id = id;
+    public ProductType(Long id){
+        super(id);
     }
 
     public Set<FoodLvThree> getType() {

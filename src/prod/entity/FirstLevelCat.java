@@ -1,12 +1,20 @@
 package prod.entity;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by admin on 20.07.2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "FirstLevelCat")
 public class FirstLevelCat extends Model{
@@ -25,55 +33,4 @@ public class FirstLevelCat extends Model{
     @Column(name = "name" ,length = 40)
     private String name;
 
-    public FirstLevelCat(){
-        super();
-    }
-    public FirstLevelCat(Long id){
-        super(id);
-    }
-
-    public Set<Prioritys> getPrioritys() {
-        return prioritys;
-    }
-
-    public void setPrioritys(Set<Prioritys> prioritys) {
-        this.prioritys = prioritys;
-    }
-
-    public Set<CommentSecondLv> getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(Set<CommentSecondLv> commentId) {
-        this.commentId = commentId;
-    }
-
-    public Set<Prioritys> getPriorityd() {
-        return prioritys;
-    }
-
-    public void setPriorityd(Set<Prioritys> priorityd) {
-        this.prioritys = priorityd;
-    }
-
-    public Set<SecondLevelCat> getSecondLevelCat() {
-        return secondLevelCat;
-    }
-
-    public void setSecondLevelCat(Set<SecondLevelCat> secondLevelCat) {
-        this.secondLevelCat = secondLevelCat;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString(){
-        return super.getId()+" " + getName();
-    }
 }

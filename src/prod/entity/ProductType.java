@@ -1,12 +1,20 @@
 package prod.entity;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by admin on 24.07.2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ProductType")
 public class ProductType extends Model{
@@ -19,26 +27,4 @@ public class ProductType extends Model{
     @Column(name = "productName" ,length = 150)
     private String productName;
 
-    public ProductType(){
-        super();
-    }
-    public ProductType(Long id){
-        super(id);
-    }
-
-    public Set<FoodLvThree> getType() {
-        return type;
-    }
-
-    public void setType(Set<FoodLvThree> type) {
-        this.type = type;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
 }

@@ -1,6 +1,12 @@
 package prod.entity;
 
-import javax.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +14,8 @@ import java.util.Set;
 /**
  * Created by admin on 24.07.2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "Users")
 public class Users extends Model{
@@ -32,59 +40,4 @@ public class Users extends Model{
     @OneToMany(mappedBy = "userId")
     private Set<Role> roleId= new HashSet<Role>();
 
-    public Users(){
-        super();
-    }
-    public Users(Long id){
-        super(id);
-    }
-
-    public Set<Role> getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Set<Role> roleId) {
-        this.roleId = roleId;
-    }
-
-
-    public Set<Prioritys> getPrioritys() {
-        return prioritys;
-    }
-
-    public void setPrioritys(Set<Prioritys> prioritys) {
-        this.prioritys = prioritys;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Date getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    public String getAbout() {
-        return about;
-    }
-
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

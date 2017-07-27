@@ -1,5 +1,8 @@
 package prod.entity;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -7,6 +10,8 @@ import java.util.Date;
 /**
  * Created by admin on 24.07.2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "FoodLvThree")
 public class FoodLvThree extends Model{
@@ -40,74 +45,4 @@ public class FoodLvThree extends Model{
     @JoinColumn(name="type", referencedColumnName = "id")
     private ProductType type;
 
-    public FoodLvThree(){
-        super();
-    }
-    public FoodLvThree(Long id){
-        super(id);
-    }
-
-    public ProductType getType() {
-        return type;
-    }
-
-    public void setType(ProductType type) {
-        this.type = type;
-    }
-
-    public SecondLevelCat getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(SecondLevelCat categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public Users getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Users userId) {
-        this.userId = userId;
-    }
-
-    public BigDecimal getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public Date getInsertData() {
-        return insertData;
-    }
-
-    public void setInsertData(Date insertData) {
-        this.insertData = insertData;
-    }
-
-    public Date getLastUpdateData() {
-        return lastUpdateData;
-    }
-
-    public void setLastUpdateData(Date lastUpdateData) {
-        this.lastUpdateData = lastUpdateData;
-    }
-
-    public int getQuantityOfGoods() {
-        return quantityOfGoods;
-    }
-
-    public void setQuantityOfGoods(int quantityOfGoods) {
-        this.quantityOfGoods = quantityOfGoods;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
 }

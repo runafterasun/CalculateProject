@@ -17,6 +17,7 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 public class PersistenceConfig {
+
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -43,4 +44,7 @@ public class PersistenceConfig {
         factoryBean.setJpaPropertyMap(jpaProperties());
         return factoryBean;
     }
+
+
+
 }

@@ -2,7 +2,6 @@ package prod.entity;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import prod.config.AppConfig;
 import prod.config.PersistenceConfig;
 
 import javax.persistence.EntityManager;

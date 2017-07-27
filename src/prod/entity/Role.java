@@ -1,10 +1,15 @@
 package prod.entity;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 
 /**
  * Created by admin on 25.07.2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "Role")
 public class Role extends Model{
@@ -18,26 +23,4 @@ public class Role extends Model{
     @Column(name = "role" ,length = 50)
     private String role;
 
-    public Role(){
-        super();
-    }
-    public Role(Long id){
-        super(id);
-    }
-
-    public Users getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Users userId) {
-        this.userId = userId;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

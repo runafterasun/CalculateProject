@@ -1,6 +1,8 @@
 package prod.entity;
 
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.Set;
 /**
  * Created by admin on 20.07.2017.
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "SecondLevelCat")
 public class SecondLevelCat extends Model{
@@ -35,61 +39,4 @@ public class SecondLevelCat extends Model{
     @Column(name = "lastUpdateData")
     private Date lastUpdateData;
 
-    public SecondLevelCat(){
-        super();
-    }
-    public SecondLevelCat(Long id){
-        super(id);
-    }
-
-
-    public Set<Prioritys> getPrioritys() {
-        return prioritys;
-    }
-
-    public void setPrioritys(Set<Prioritys> prioritys) {
-        this.prioritys = prioritys;
-    }
-
-
-    public FirstLevelCat getMainCatId() {
-        return MainCatId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Date getLastUpdateData() {
-        return lastUpdateData;
-    }
-
-
-    public void setMainCatId(FirstLevelCat mainCatId) {
-        MainCatId = mainCatId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLastUpdateData(Date lastUpdateData) {
-        this.lastUpdateData = lastUpdateData;
-    }
-
-    public Set<CommentSecondLv> getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Set<CommentSecondLv> priority) {
-        this.priority = priority;
-    }
-
-    public Set<FoodLvThree> getLevelThree() {
-        return levelThree;
-    }
-
-    public void setLevelThree(Set<FoodLvThree> levelThree) {
-        this.levelThree = levelThree;
-    }
 }

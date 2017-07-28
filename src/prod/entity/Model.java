@@ -2,6 +2,7 @@ package prod.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * Created by admin on 25.07.2017.
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
 public abstract class Model implements Serializable{

@@ -25,7 +25,7 @@ public class PersistenceConfig {
         sessionBuilder.scanPackages("prod.entity");
         sessionBuilder.addProperties(getHibernateProperties());
 
-        return sessionBuilder.buildSessionFactory(); 
+        return sessionBuilder.buildSessionFactory();
     }
 
     @Autowired

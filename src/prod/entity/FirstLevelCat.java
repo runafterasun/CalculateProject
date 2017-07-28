@@ -33,4 +33,7 @@ public class FirstLevelCat extends Model{
     @Column(name = "name" ,length = 40)
     private String name;
 
+    public String toString(){
+        return super.getId() + " " + name;
+    }
 }

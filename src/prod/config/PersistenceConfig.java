@@ -1,50 +1,59 @@
 package prod.config;
 
-import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Properties;
 
-/**
- * Created by admin on 12.07.2017.
- */
 @Configuration
 @EnableTransactionManagement
 public class PersistenceConfig {
 
-    @Bean
-    public DataSource dataSource(){
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    @Autowired
+    @Bean(name = "sessionFactory")
+    public SessionFactory getSessionFactory(DataSource dataSource) {
+
+        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+
+        sessionBuilder.scanPackages("prod.entity");
+        sessionBuilder.addProperties(getHibernateProperties());
+
+        return sessionBuilder.buildSessionFactory();
+    }
+
+    @Autowired
+    @Bean(name = "transactionManager")
+    public HibernateTransactionManager getTransactionManager(
+            SessionFactory sessionFactory) {
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager(
+                sessionFactory);
+
+        return transactionManager;
+    }
+
+    private Properties getHibernateProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        return properties;
+    }
+
+    @Bean(name = "dataSource")
+    public DataSource getDataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost/world?useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         dataSource.setUsername("project");
         dataSource.setPassword("test");
+
         return dataSource;
     }
-
-    private Map<String,?> jpaProperties(){
-        Map<String, String> jpaProperiesMap = new HashMap<String, String>();
-        jpaProperiesMap.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
-        jpaProperiesMap.put("hibernate.hbm2ddl.auto", "update");
-        return jpaProperiesMap;
-    }
-
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan("prod");
-        factoryBean.setJpaPropertyMap(jpaProperties());
-        return factoryBean;
-    }
-
-
 
 }

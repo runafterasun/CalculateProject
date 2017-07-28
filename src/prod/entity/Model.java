@@ -1,7 +1,7 @@
 package prod.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by admin on 25.07.2017.
  */
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 @MappedSuperclass
 public abstract class Model implements Serializable{
 
@@ -20,4 +20,5 @@ public abstract class Model implements Serializable{
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
 }

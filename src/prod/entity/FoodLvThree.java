@@ -2,6 +2,8 @@ package prod.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -29,9 +31,11 @@ public class FoodLvThree extends Model{
     @Column(name = "productPrice")
     private BigDecimal productPrice;
 
+    @CreationTimestamp
     @Column(name = "insertData")
     private Date insertData;
 
+    @UpdateTimestamp
     @Column(name = "lastUpdateData")
     private Date lastUpdateData;
 

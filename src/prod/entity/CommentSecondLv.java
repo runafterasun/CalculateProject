@@ -2,6 +2,7 @@ package prod.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,6 +19,7 @@ public class CommentSecondLv extends Model{
     @JoinColumn(name="commentId", referencedColumnName = "id")
     private FirstLevelCat commentId;
 
+    @CreationTimestamp
     @Column(name = "CommentDate")
     private Date CommentDate;
 

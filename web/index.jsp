@@ -1,1 +1,1 @@
-<% response.sendRedirect("hello.mvc"); %>
+<% response.sendRedirect("/main/"); %>
